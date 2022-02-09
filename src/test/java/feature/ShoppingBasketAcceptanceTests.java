@@ -3,6 +3,8 @@ package feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShoppingBasketAcceptanceTests {
@@ -16,7 +18,7 @@ public class ShoppingBasketAcceptanceTests {
 
     @BeforeEach
     void setUp(){
-        this.shoppingBasketService = new ShoppingBasketService(new BasketRepository(new Baskets()));
+        this.shoppingBasketService = new ShoppingBasketService(new BasketRepository(new Baskets(new ArrayList<>())));
         this.user = new User(1);
     }
 

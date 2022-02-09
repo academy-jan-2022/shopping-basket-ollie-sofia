@@ -5,13 +5,18 @@ import java.util.List;
 
 public class Baskets {
 
-    List<Basket> baskets = new ArrayList<>();
+    private final List<Basket> baskets;
+
+    public Baskets(List<Basket> baskets) {
+        this.baskets = baskets;
+    }
 
     public boolean exists(User user) {
         for (Basket basket : baskets) {
             if (user.equals(basket.user()))
                 return true;
         }
+
         return false;
     }
 }
