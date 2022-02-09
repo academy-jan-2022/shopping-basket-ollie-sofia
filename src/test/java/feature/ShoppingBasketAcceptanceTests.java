@@ -16,7 +16,7 @@ public class ShoppingBasketAcceptanceTests {
         shoppingBasket.addItem(new BasketItem(1, 1,2));
         shoppingBasket.addItem(new BasketItem(1, 1,2));
         var basket = shoppingBasket.basketFor(1);
-        var result = basket.showOrder();
+        var result = basket.checkContent();
         var expected = "- Basket Created on 01/01/2020\n"
                 + "- 2 x The Hobbit // 2 x 5.00 = £10.00\n"
                 + "- 5 x Breaking Bad // 5 x 7.00 = £35.00"

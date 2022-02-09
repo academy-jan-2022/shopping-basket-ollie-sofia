@@ -7,7 +7,7 @@ public class Basket {
         this.userId = userId;
     }
 
-    public String showOrder() {
+    public String checkContent() {
         throw new UnsupportedOperationException();
     }
 }
