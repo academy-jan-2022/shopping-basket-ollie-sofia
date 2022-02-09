@@ -18,7 +18,7 @@ public class ShoppingBasketServiceShould {
 
     @BeforeEach
     void setUp(){
-        orderRepository = mock(OrderRepository.class);
+        orderRepository = mock(DefaultOrderRepository.class);
     }
 
     @Test

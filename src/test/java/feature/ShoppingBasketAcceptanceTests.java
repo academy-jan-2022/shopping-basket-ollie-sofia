@@ -12,7 +12,7 @@ public class ShoppingBasketAcceptanceTests {
 //      - Total: £45.00
     @Test
     void E2E(){
-        var shoppingBasket = new ShoppingBasketService(new OrderRepository());
+        var shoppingBasket = new ShoppingBasketService(new DefaultOrderRepository());
         shoppingBasket.addItem(1, 1, 2);
         shoppingBasket.addItem(1, 2, 5);
         var basket = shoppingBasket.basketFor(1);
