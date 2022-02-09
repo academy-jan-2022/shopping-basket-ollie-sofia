@@ -13,6 +13,7 @@ public class ShoppingBasketService {
     }
 
     public Basket basketFor(int userId) {
-        return new Basket();
+        var basket = new Basket(userId);
+        return basket;
     }
 }

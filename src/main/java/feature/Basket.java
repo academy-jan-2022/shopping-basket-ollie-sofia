@@ -1,7 +1,11 @@
 package feature;
 
 public class Basket {
-    public short userId;
+    public Integer userId;
+
+    public Basket(Integer userId) {
+        this.userId = userId;
+    }
 
     public String showOrder() {
         throw new UnsupportedOperationException();
