@@ -1,6 +1,6 @@
 package feature;
 
-public class Basket {
+public record Basket(User user) {
 
     public String checkContent() {
         throw new UnsupportedOperationException();

@@ -4,8 +4,8 @@ public class BasketRepository implements IBasketRepository {
 
     private final Baskets baskets;
 
-    public BasketRepository() {
-        this.baskets = new Baskets();
+    public BasketRepository(Baskets baskets) {
+        this.baskets = baskets;
     }
 
     public void add(User userId, Product productId, int quantity) {

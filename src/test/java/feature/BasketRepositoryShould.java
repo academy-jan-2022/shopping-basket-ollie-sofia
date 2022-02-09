@@ -18,7 +18,7 @@ public class BasketRepositoryShould {
     void setUp() {
         this.user = new User(1);
         this.baskets = mock(Baskets.class);
-        this.basketRepo = new BasketRepository();
+        this.basketRepo = new BasketRepository(baskets);
     }
 
     @Test void
