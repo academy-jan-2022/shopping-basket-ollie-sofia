@@ -30,6 +30,6 @@ public class BasketRepositoryShould {
     @Test void
     creates_a_basket() {
         basketRepo.createBasket(user);
-        verify(baskets).add(any(User.class));
+        verify(baskets).create(any(User.class));
     }
 }

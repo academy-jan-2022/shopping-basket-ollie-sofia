@@ -36,14 +36,14 @@ public class BasketsShould {
 
     @Test
     void add_basket_to_basket_list(){
-        baskets.add(user);
+        baskets.create(user);
         var userBasket = baskets.findBasket(user);
         assertEquals(user, userBasket.user());
     }
 
     @Test
     void add_basket_returns_basket(){
-        var result = baskets.add(user);
+        var result = baskets.create(user);
         var userExists = baskets.findBasket(user);
         assertInstanceOf(Basket.class, result);
     }

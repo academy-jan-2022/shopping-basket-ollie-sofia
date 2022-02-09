@@ -24,9 +24,13 @@ public class Baskets {
 //        return false;
     }
 
-    public Basket add(User user) {
+    public Basket create(User user) {
         Basket newBasket = new Basket(user);
         baskets.add(newBasket);
         return newBasket;
+    }
+
+    public void addItem(Basket basket, Product product, int quantity) {
+        throw new UnsupportedOperationException();
     }
 }
