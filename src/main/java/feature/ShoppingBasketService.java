@@ -8,8 +8,8 @@ public class ShoppingBasketService {
         this.order = order;
     }
 
-    public void addItem(int i, int i1, int i2) {
-        order.add(i,i1, i2);
+    public void addItem(int userId, int productId, int quantity) {
+        order.add(userId, productId, quantity);
     }
 
     public Basket basketFor(int i) {
