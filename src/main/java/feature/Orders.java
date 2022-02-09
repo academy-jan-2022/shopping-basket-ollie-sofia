@@ -1,13 +1,19 @@
 package feature;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Orders {
+
+    private List<BasketItem> baskets = new ArrayList(){};
+
     public void add(BasketItem basketItem) {
-        throw new UnsupportedOperationException();
+
+        baskets.add(basketItem);
     }
 
     public List<BasketItem> getAll() {
-        throw new UnsupportedOperationException();
+        return Collections.unmodifiableList(baskets);
     }
 }
