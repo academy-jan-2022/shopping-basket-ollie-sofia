@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -36,5 +37,11 @@ public class ShoppingBasketServiceShould {
     return_a_basket(){
         var result = shoppingBasketService.basketFor(1);
         assertTrue(result instanceof Basket);
+    }
+
+    @Test void
+    return_basket_of_user_id_1() {
+        var result = shoppingBasketService.basketFor(1);
+        assertEquals(result.userId, 1);
     }
 }
