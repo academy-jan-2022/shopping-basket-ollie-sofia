@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BasketsShould {
 
@@ -41,5 +40,12 @@ public class BasketsShould {
         baskets.add(user);
         var userExists = baskets.exists(user);
         assertTrue(userExists);
+    }
+
+    @Test
+    void add_basket_returns_basket(){
+        var result = baskets.add(user);
+        var userExists = baskets.exists(user);
+        assertInstanceOf(Basket.class, result);
     }
 }

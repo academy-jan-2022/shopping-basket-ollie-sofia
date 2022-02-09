@@ -21,6 +21,6 @@ public class Baskets {
     }
 
     public Basket add(User user) {
-        throw new UnsupportedOperationException();
+        return new Basket(user);
     }
 }
