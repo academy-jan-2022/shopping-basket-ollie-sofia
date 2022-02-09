@@ -13,12 +13,19 @@ import static org.mockito.Mockito.verify;
 
 public class ShoppingBasketServiceShould {
 
+    @Mock IBasketRepository basketRepo;
+
+    @BeforeEach
+    void setUp(){
+        basketRepo = mock(BasketRepository.class);
+    }
+
 
     @Test
     void
-    add_an_item_to_the_basket() {
-        var shoppingBasketService = new ShoppingBasketService();
+    invoke_add_method_on_basket_repo() {
+        var shoppingBasketService = new ShoppingBasketService(basketRepo);
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
-        //verify().add(1, 1, 2);
+        verify(basketRepo).add(1, 1, 2);
     }
 }

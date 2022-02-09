@@ -16,7 +16,7 @@ public class ShoppingBasketAcceptanceTests {
 
     @BeforeEach
     void setUp(){
-        this.shoppingBasketService = new ShoppingBasketService();
+        this.shoppingBasketService = new ShoppingBasketService(new BasketRepository());
         this.user = new User(1);
     }
 
