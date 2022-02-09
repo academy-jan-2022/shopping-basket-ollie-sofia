@@ -26,4 +26,10 @@ public class BasketRepositoryShould {
         basketRepo.exists(user);
         verify(baskets).exists(any(User.class));
     }
+
+    @Test void
+    creates_a_basket() {
+        basketRepo.createBasket(user);
+        verify(baskets).add(any(User.class));
+    }
 }

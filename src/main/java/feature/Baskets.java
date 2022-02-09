@@ -19,4 +19,8 @@ public class Baskets {
 
         return false;
     }
+
+    public void add(User user) {
+        throw new UnsupportedOperationException();
+    }
 }
