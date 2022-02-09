@@ -35,4 +35,11 @@ public class ShoppingBasketServiceShould {
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
         verify(basketRepo).exists(any(User.class));
     }
+
+    @Test void
+    creates_basket_if_does_not_exist() {
+        var shoppingBasketService = new ShoppingBasketService(basketRepo);
+        shoppingBasketService.addItem(new User(1), new Product(1), 2);
+        verify(basketRepo).createBasket(any(User.class));
+    }
 }

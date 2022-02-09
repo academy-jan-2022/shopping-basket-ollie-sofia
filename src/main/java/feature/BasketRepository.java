@@ -16,4 +16,9 @@ public class BasketRepository implements IBasketRepository {
     public boolean exists(User user) {
         return baskets.exists(user);
     }
+
+    @Override
+    public void createBasket(User user) {
+        throw new UnsupportedOperationException();
+    }
 }
