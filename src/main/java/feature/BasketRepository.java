@@ -23,7 +23,7 @@ public class BasketRepository implements IBasketRepository {
     }
 
     @Override
-    public void addItem(Basket basket, Product product, int quantity) {
-        baskets.addItem(basket, product, quantity);
+    public void addItem(Basket basket, Item item) {
+        baskets.addItem(basket, item);
     }
 }

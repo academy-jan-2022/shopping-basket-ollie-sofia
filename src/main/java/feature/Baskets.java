@@ -13,15 +13,9 @@ public class Baskets {
     public Basket findBasket(User user) {
         return baskets
                 .stream()
-                .filter(basket -> user.equals(basket.user()))
+                .filter(basket -> user.id() == basket.getUserId())
                 .findFirst()
                 .orElse(null);
-//        for (Basket basket : baskets) {
-//            if (user.equals(basket.user()))
-//                return true;
-//        }
-//
-//        return false;
     }
 
     public Basket create(User user) {
@@ -30,7 +24,7 @@ public class Baskets {
         return newBasket;
     }
 
-    public void addItem(Basket basket, Product product, int quantity) {
+    public void addItem(Basket basket, Item item) {
         throw new UnsupportedOperationException();
     }
 }

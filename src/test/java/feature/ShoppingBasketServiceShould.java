@@ -47,6 +47,6 @@ public class ShoppingBasketServiceShould {
     add_item_when_basket_exists() {
         when(basketRepo.getByUserId(any(User.class))).thenReturn(new Basket(new User(1)));
         shoppingBasketService.addItem(new User(1), new Product(2), 1);
-        verify(basketRepo).addItem(any(Basket.class), any(Product.class), anyInt());
+        verify(basketRepo).addItem(any(Basket.class), any(Item.class));
     }
 }

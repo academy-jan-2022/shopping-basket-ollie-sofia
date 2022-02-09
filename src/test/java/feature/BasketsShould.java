@@ -38,7 +38,7 @@ public class BasketsShould {
     void add_basket_to_basket_list(){
         baskets.create(user);
         var userBasket = baskets.findBasket(user);
-        assertEquals(user, userBasket.user());
+        assertEquals(user.id(), userBasket.getUserId());
     }
 
     @Test
@@ -46,5 +46,12 @@ public class BasketsShould {
         var result = baskets.create(user);
         var userExists = baskets.findBasket(user);
         assertInstanceOf(Basket.class, result);
+    }
+
+    @Test
+    void add_new_item_to_existing_basket(){
+        baskets.addItem(new Basket(user), new Item(new Product(1), 2));
+        var result = baskets.findBasket(user);
+
     }
 }
