@@ -10,9 +10,12 @@ public class ShoppingBasketService {
 
     public void addItem(User user, Product product, int quantity) {
         var userBasketExists = basketRepo.exists(user);
+
         if(!userBasketExists) {
             basketRepo.createBasket(user);
         }
+
+        basketRepo.addItem(user);
     }
 
     public Basket basketFor(int i) {
