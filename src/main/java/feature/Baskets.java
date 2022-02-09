@@ -25,6 +25,6 @@ public class Baskets {
     }
 
     public void addItem(Basket basket, Item item) {
-        throw new UnsupportedOperationException();
+        basket.items.add(item);
     }
 }
