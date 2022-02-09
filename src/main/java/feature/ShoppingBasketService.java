@@ -2,14 +2,14 @@ package feature;
 
 public class ShoppingBasketService {
 
-    private final OrderRepository orderRepository;
+    private final OrderRepository basketRepository;
 
-    public ShoppingBasketService(OrderRepository orderRepository) {
-        this.orderRepository = orderRepository;
+    public ShoppingBasketService(OrderRepository basketRepository) {
+        this.basketRepository = basketRepository;
     }
 
-    public void addItem(int userId, int productId, int quantity) {
-        orderRepository.add(userId, productId, quantity);
+    public void addItem(BasketItem basketItem) {
+        basketRepository.add(basketItem);
     }
 
     public Basket basketFor(int i) {

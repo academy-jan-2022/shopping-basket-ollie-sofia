@@ -1,5 +1,5 @@
 package feature;
 
 public interface OrderRepository {
-    void add(int userId, int productId, int quantity);
+    void add(BasketItem basketItem);
 }

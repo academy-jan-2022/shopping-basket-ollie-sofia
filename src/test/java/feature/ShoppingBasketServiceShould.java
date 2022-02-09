@@ -18,14 +18,14 @@ public class ShoppingBasketServiceShould {
 
     @BeforeEach
     void setUp(){
-        orderRepository = mock(DefaultOrderRepository.class);
+        orderRepository = mock(BasketRepository.class);
     }
 
     @Test
     void
     add_an_item_to_the_basket() {
         var shoppingBasketService = new ShoppingBasketService(orderRepository);
-        shoppingBasketService.addItem(1, 1, 2);
-        verify(orderRepository).add(1, 1, 2);
+        shoppingBasketService.addItem(new BasketItem(1, 1,2));
+        verify(orderRepository).add(new BasketItem(1, 1,2));
     }
 }

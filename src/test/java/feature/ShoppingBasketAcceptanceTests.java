@@ -12,9 +12,9 @@ public class ShoppingBasketAcceptanceTests {
 //      - Total: £45.00
     @Test
     void E2E(){
-        var shoppingBasket = new ShoppingBasketService(new DefaultOrderRepository(new Orders()));
-        shoppingBasket.addItem(1, 1, 2);
-        shoppingBasket.addItem(1, 2, 5);
+        var shoppingBasket = new ShoppingBasketService(new BasketRepository(new Orders()));
+        shoppingBasket.addItem(new BasketItem(1, 1,2));
+        shoppingBasket.addItem(new BasketItem(1, 1,2));
         var basket = shoppingBasket.basketFor(1);
         var result = basket.showOrder();
         var expected = "- Basket Created on 01/01/2020\n"

@@ -18,9 +18,9 @@ public class OrderRepositoryShould {
 
     @Test
     void invoke_create_method_on_order_memoryDb(){
-        OrderRepository orderRepo = new DefaultOrderRepository(orders);
-        orderRepo.add(1, 1, 2);
+        OrderRepository orderRepo = new BasketRepository(orders);
+        orderRepo.add(new BasketItem(1, 1,2));
 
-        verify(orders).add(1, 1, 2);
+        verify(orders).add(new BasketItem(1, 1,2));
     }
 }
