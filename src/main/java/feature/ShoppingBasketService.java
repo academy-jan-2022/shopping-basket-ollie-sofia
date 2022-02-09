@@ -9,13 +9,14 @@ public class ShoppingBasketService {
     }
 
     public void addItem(User user, Product product, int quantity) {
-        var userBasketExists = basketRepo.exists(user);
+        var userBasket = basketRepo.getByUserId(user);
 
-        if(!userBasketExists) {
-            basketRepo.createBasket(user);
+        if(userBasket == null) {
+            userBasket = basketRepo.createBasket(user);
         }
 
-        basketRepo.addItem(user);
+        basketRepo.addItem(userBasket, product, quantity);
+
     }
 
     public Basket basketFor(int i) {

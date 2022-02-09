@@ -23,8 +23,8 @@ public class BasketRepositoryShould {
 
     @Test void
     returns_true_if_basket_exists(){
-        basketRepo.exists(user);
-        verify(baskets).exists(any(User.class));
+        basketRepo.getByUserId(user);
+        verify(baskets).findBasket(any(User.class));
     }
 
     @Test void

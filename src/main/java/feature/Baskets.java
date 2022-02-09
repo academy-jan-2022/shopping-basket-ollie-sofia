@@ -1,6 +1,5 @@
 package feature;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Baskets {
@@ -11,13 +10,18 @@ public class Baskets {
         this.baskets = baskets;
     }
 
-    public boolean exists(User user) {
-        for (Basket basket : baskets) {
-            if (user.equals(basket.user()))
-                return true;
-        }
-
-        return false;
+    public Basket findBasket(User user) {
+        return baskets
+                .stream()
+                .filter(basket -> user.equals(basket.user()))
+                .findFirst()
+                .orElse(null);
+//        for (Basket basket : baskets) {
+//            if (user.equals(basket.user()))
+//                return true;
+//        }
+//
+//        return false;
     }
 
     public Basket add(User user) {

@@ -13,8 +13,8 @@ public class BasketRepository implements IBasketRepository {
     }
 
     @Override
-    public boolean exists(User user) {
-        return baskets.exists(user);
+    public Basket getByUserId(User user) {
+        return baskets.findBasket(user);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class BasketRepository implements IBasketRepository {
     }
 
     @Override
-    public void addItem(User user) {
+    public void addItem(Basket basket, Product product, int quantity) {
         throw new UnsupportedOperationException();
     }
 }

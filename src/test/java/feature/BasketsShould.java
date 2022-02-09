@@ -20,32 +20,31 @@ public class BasketsShould {
 
     @Test
     void return_false_when_calling_exists_when_no_baskets(){
-        var expected = false;
-        var result = baskets.exists(user);
-        assertEquals(expected, result);
+        var result = baskets.findBasket(user);
+        assertNull(result);
     }
 
     @Test
     void return_true_when_existing_baskets(){
-        var expected = true;
+        var expected = new Basket(user);
         var listOfBaskets = new ArrayList<Basket>();
-        listOfBaskets.add(new Basket(user));
+        listOfBaskets.add(expected);
         var baskets  = new Baskets(listOfBaskets);
-        var result = baskets.exists(user);
+        var result = baskets.findBasket(user);
         assertEquals(expected, result);
     }
 
     @Test
     void add_basket_to_basket_list(){
         baskets.add(user);
-        var userExists = baskets.exists(user);
-        assertTrue(userExists);
+        var userBasket = baskets.findBasket(user);
+        assertEquals(user, userBasket.user());
     }
 
     @Test
     void add_basket_returns_basket(){
         var result = baskets.add(user);
-        var userExists = baskets.exists(user);
+        var userExists = baskets.findBasket(user);
         assertInstanceOf(Basket.class, result);
     }
 }

@@ -33,20 +33,20 @@ public class ShoppingBasketServiceShould {
     @Test void
     check_if_basket_exists() {
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
-        verify(basketRepo).exists(any(User.class));
+        verify(basketRepo).getByUserId(any(User.class));
     }
 
     @Test void
     creates_basket_if_does_not_exist() {
-        when(basketRepo.exists(any(User.class))).thenReturn(false);
+        when(basketRepo.getByUserId(any(User.class))).thenReturn(null);
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
         verify(basketRepo).createBasket(any(User.class));
     }
 
     @Test void
     add_item_when_basket_exists() {
-        when(basketRepo.exists(any(User.class))).thenReturn(true);
+        when(basketRepo.getByUserId(any(User.class))).thenReturn(new Basket(new User(1)));
         shoppingBasketService.addItem(new User(1), new Product(2), 1);
-        verify(basketRepo).addItem(any(User.class));
+        verify(basketRepo).addItem(any(Basket.class), any(Product.class), anyInt());
     }
 }
