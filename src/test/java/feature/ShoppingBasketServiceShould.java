@@ -42,4 +42,11 @@ public class ShoppingBasketServiceShould {
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
         verify(basketRepo).createBasket(any(User.class));
     }
+
+    @Test void
+    add_item_when_basket_exists() {
+        when(basketRepo.exists(any(User.class))).thenReturn(true);
+        shoppingBasketService.addItem(new User(1), new Product(2), 1);
+        verify(basketRepo).addItem(any(User.class));
+    }
 }
