@@ -13,18 +13,12 @@ import static org.mockito.Mockito.verify;
 
 public class ShoppingBasketServiceShould {
 
-    @Mock Order order;
-
-    @BeforeEach
-    void setUp(){
-        order = mock(Order.class);
-    }
 
     @Test
     void
     add_an_item_to_the_basket() {
-        var shoppingBasketService = new ShoppingBasketService(order);
-        shoppingBasketService.addItem(1, 1, 2);
-        verify(order).add(1, 1, 2);
+        var shoppingBasketService = new ShoppingBasketService();
+        shoppingBasketService.addItem(new User(1), new Product(1), 2);
+        //verify().add(1, 1, 2);
     }
 }

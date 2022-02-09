@@ -1,7 +1,8 @@
 package feature;
 
 public class Basket {
-    public String showOrder() {
+
+    public String checkContent() {
         throw new UnsupportedOperationException();
     }
 }
