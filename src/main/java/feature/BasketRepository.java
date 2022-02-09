@@ -19,6 +19,6 @@ public class BasketRepository implements IBasketRepository {
 
     @Override
     public Basket createBasket(User user) {
-        throw new UnsupportedOperationException();
+        return baskets.add(user);
     }
 }
