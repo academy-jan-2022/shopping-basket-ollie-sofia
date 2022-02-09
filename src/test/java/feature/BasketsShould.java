@@ -22,4 +22,11 @@ public class BasketsShould {
         var result = baskets.exists(user);
         assertEquals(expected, result);
     }
+
+    @Test
+    void return_true_when_existing_baskets(){
+        var expected = true;
+        var result = baskets.exists(user);
+        assertEquals(expected, result);
+    }
 }
