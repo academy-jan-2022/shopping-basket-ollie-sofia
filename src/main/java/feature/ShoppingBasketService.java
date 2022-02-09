@@ -13,7 +13,7 @@ public class ShoppingBasketService {
     }
 
     public Basket basketFor(int userId) {
-        var basket = new Basket(userId);
+        var basket = new Basket(userId, "01/01/2020");
         return basket;
     }
 }
