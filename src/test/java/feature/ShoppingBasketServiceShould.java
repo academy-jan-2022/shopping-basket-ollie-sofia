@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -15,17 +16,25 @@ public class ShoppingBasketServiceShould {
 
     @Mock
     BasketRepository basketRepository;
+    private ShoppingBasketService shoppingBasketService;
 
     @BeforeEach
     void setUp(){
         basketRepository = mock(DefaultBasketRepository.class);
+        this.shoppingBasketService = new ShoppingBasketService(basketRepository);
     }
 
     @Test
     void
     add_an_item_to_the_basket() {
-        var shoppingBasketService = new ShoppingBasketService(basketRepository);
         shoppingBasketService.addItem(new BasketItem(1, 1,2));
         verify(basketRepository).add(new BasketItem(1, 1,2));
+    }
+
+    @Test
+    void
+    return_a_basket(){
+        var result = shoppingBasketService.basketFor(1);
+        assertTrue(result instanceof Basket);
     }
 }
