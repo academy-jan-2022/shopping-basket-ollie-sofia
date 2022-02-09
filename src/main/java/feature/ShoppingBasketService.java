@@ -2,9 +2,9 @@ package feature;
 
 public class ShoppingBasketService {
 
-    private final OrderRepository basketRepository;
+    private final BasketRepository basketRepository;
 
-    public ShoppingBasketService(OrderRepository basketRepository) {
+    public ShoppingBasketService(BasketRepository basketRepository) {
         this.basketRepository = basketRepository;
     }
 

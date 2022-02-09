@@ -14,18 +14,18 @@ import static org.mockito.Mockito.verify;
 public class ShoppingBasketServiceShould {
 
     @Mock
-    OrderRepository orderRepository;
+    BasketRepository basketRepository;
 
     @BeforeEach
     void setUp(){
-        orderRepository = mock(BasketRepository.class);
+        basketRepository = mock(DefaultBasketRepository.class);
     }
 
     @Test
     void
     add_an_item_to_the_basket() {
-        var shoppingBasketService = new ShoppingBasketService(orderRepository);
+        var shoppingBasketService = new ShoppingBasketService(basketRepository);
         shoppingBasketService.addItem(new BasketItem(1, 1,2));
-        verify(orderRepository).add(new BasketItem(1, 1,2));
+        verify(basketRepository).add(new BasketItem(1, 1,2));
     }
 }

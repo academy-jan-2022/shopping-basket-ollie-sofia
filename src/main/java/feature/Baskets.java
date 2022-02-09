@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Orders {
+public class Baskets {
 
     private List<BasketItem> baskets = new ArrayList(){};
 

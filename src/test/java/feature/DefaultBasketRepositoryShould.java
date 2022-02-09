@@ -7,20 +7,21 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class OrderRepositoryShould {
+public class DefaultBasketRepositoryShould {
 
-    @Mock Orders orders;
+    @Mock
+    Baskets baskets;
 
     @BeforeEach
     void setUp(){
-        this.orders = mock(Orders.class);
+        this.baskets = mock(Baskets.class);
     }
 
     @Test
     void invoke_create_method_on_order_memoryDb(){
-        OrderRepository orderRepo = new BasketRepository(orders);
+        BasketRepository orderRepo = new DefaultBasketRepository(baskets);
         orderRepo.add(new BasketItem(1, 1,2));
 
-        verify(orders).add(new BasketItem(1, 1,2));
+        verify(baskets).add(new BasketItem(1, 1,2));
     }
 }
