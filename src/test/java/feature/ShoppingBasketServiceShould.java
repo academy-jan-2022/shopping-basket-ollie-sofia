@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -32,6 +33,6 @@ public class ShoppingBasketServiceShould {
     check_if_basket_exists() {
         var shoppingBasketService = new ShoppingBasketService(basketRepo);
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
-       verify(basketRepo).exists();
+        verify(basketRepo).exists(any(User.class));
     }
 }

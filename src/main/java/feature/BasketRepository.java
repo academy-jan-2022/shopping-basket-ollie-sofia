@@ -6,7 +6,7 @@ public class BasketRepository implements IBasketRepository {
     }
 
     @Override
-    public boolean exists() {
+    public boolean exists(User user) {
         throw new UnsupportedOperationException();
     }
 }
