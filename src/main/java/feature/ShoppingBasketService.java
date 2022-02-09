@@ -12,7 +12,7 @@ public class ShoppingBasketService {
         basketRepository.add(basketItem);
     }
 
-    public Basket basketFor(int i) {
-        throw new UnsupportedOperationException();
+    public Basket basketFor(int userId) {
+        return new Basket();
     }
 }
