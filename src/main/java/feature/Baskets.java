@@ -25,6 +25,7 @@ public class Baskets {
     }
 
     public void addItem(Basket basket, Item item) {
+        baskets.add(basket);
         basket.items.add(item);
     }
 }
