@@ -21,6 +21,8 @@ public class Baskets {
     }
 
     public Basket add(User user) {
-        return new Basket(user);
+        Basket newBasket = new Basket(user);
+        baskets.add(newBasket);
+        return newBasket;
     }
 }
