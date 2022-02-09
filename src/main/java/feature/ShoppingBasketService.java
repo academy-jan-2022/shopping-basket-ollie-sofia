@@ -2,9 +2,10 @@ package feature;
 
 public class ShoppingBasketService {
     public void addItem(int i, int i1, int i2) {
+        throw new UnsupportedOperationException();
     }
 
     public Basket basketFor(int i) {
-        return new Basket();
+        throw new UnsupportedOperationException();
     }
 }
