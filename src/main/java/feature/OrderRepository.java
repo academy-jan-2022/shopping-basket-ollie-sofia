@@ -1,6 +1,6 @@
 package feature;
 
-public class Order {
+public class OrderRepository {
     public void add(int userId, int productId, int quantity) {
 
     }
