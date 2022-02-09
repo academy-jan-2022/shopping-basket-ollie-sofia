@@ -20,12 +20,18 @@ public class ShoppingBasketServiceShould {
         basketRepo = mock(BasketRepository.class);
     }
 
+//    @Test
+//    void
+//    invoke_add_method_on_basket_repo() {
+//        var shoppingBasketService = new ShoppingBasketService(basketRepo);
+//        shoppingBasketService.addItem(new User(1), new Product(1), 2);
+//        verify(basketRepo).add(new User(1), new Product(1), 2);
+//    }
 
-    @Test
-    void
-    invoke_add_method_on_basket_repo() {
+    @Test void
+    check_if_basket_exists() {
         var shoppingBasketService = new ShoppingBasketService(basketRepo);
         shoppingBasketService.addItem(new User(1), new Product(1), 2);
-        verify(basketRepo).add(new User(1), new Product(1), 2);
+       verify(basketRepo).exists();
     }
 }

@@ -1,5 +1,6 @@
 package feature;
 
 public interface IBasketRepository {
-    void add(int i, int i1, int i2);
+    void add(User userId, Product productId, int quantity);
+    boolean exists();
 }
