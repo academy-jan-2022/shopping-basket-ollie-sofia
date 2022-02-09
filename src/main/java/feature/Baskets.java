@@ -2,7 +2,7 @@ package feature;
 
 public class Baskets {
 
-    public void exists(User user) {
+    public boolean exists(User user) {
         throw new UnsupportedOperationException();
     }
 }
