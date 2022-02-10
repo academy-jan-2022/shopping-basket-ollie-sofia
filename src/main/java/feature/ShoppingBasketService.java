@@ -19,15 +19,19 @@ public class ShoppingBasketService {
     }
 
     public Basket basketFor(UserId userId) {
-        var productQuantities = basketRepo.getUserItems(userId);
+        var items = basketRepo.getUserItems(userId);
+
+        if(items == null)
+            return null;
+
         var basketEntries =  new ArrayList<BasketEntry>();
 
-        for (var productQuantity : productQuantities){
-            var entry = new BasketEntry(productQuantity.productId(), productQuantity.quantity());
+        for (var item : items){
+            var entry = new BasketEntry(item.productId(), item.quantity());
             basketEntries.add(entry);
         }
 
-        var basket = new Basket(basketEntries, 0, new Date());
+        var basket = new Basket(basketEntries, 0, items.get(0).dateAdded());
 
         return basket;
     }

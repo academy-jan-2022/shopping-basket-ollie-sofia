@@ -29,7 +29,7 @@ public class ShoppingBasketServiceShould {
         dateProvider = mock(DateProvider.class);
         shoppingBasketService = new ShoppingBasketService(basketRepo, dateProvider);
         userId = new UserId(1);
-        expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, ""),
+        expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, "01/01/2021"),
                 new BasketItem(new ProductId(2), 1, ""), new BasketItem(new ProductId(3), 1, "")};
 
     }
