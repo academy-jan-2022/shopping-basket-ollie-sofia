@@ -50,8 +50,8 @@ public class BasketsShould {
 
     @Test
     void add_new_item_to_existing_basket(){
-        var basket = baskets.create(user);
-        baskets.addItem(basket, new Item(new Product(1), 2));
+        var newBasket = baskets.create(user);
+        baskets.addItem(newBasket, new Item(new Product(1), 2));
         var result = baskets.findBasket(user);
         assertEquals(result.items.size(), 1);
     }
