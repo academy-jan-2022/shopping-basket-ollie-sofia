@@ -54,4 +54,13 @@ public class ShoppingBasketServiceShould {
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expected.size(), result.entries().size());
    }
+
+    @Test void
+    return_basket_with_correct_date_when_contains_1_item() {
+        var expected = new ArrayList<BasketItem>(Arrays.asList(expectedItems[0]));
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
+
+        var result = shoppingBasketService.basketFor(userId);
+        assertEquals(expected.get(0).dateAdded(), result.createdAt());
+    }
 }
