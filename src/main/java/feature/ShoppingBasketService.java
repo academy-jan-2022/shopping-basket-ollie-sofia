@@ -17,11 +17,9 @@ public class ShoppingBasketService {
         }
 
         basketRepo.addItem(userBasket, newItem);
-
     }
 
     public Basket basketFor(User user) {
-        basketRepo.getByUserId(user);
-        return new Basket(user);
+        return basketRepo.getByUserId(user);
     }
 }
