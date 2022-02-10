@@ -54,6 +54,7 @@ public class BasketsShould {
         baskets.addItem(newBasket, new Item(new Product(1), 2));
         var result = baskets.findBasket(user);
         assertEquals(result.items.size(), 1);
+        assertEquals(newBasket, result);
     }
 
     @Test
