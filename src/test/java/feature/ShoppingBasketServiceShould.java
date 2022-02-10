@@ -27,13 +27,13 @@ public class ShoppingBasketServiceShould {
 
     @Test void
     add_item_when_basket_exists() {
-        shoppingBasketService.addItem(new UserId(1), new ProductId(2), 1);
+        shoppingBasketService.addItem(userId, new ProductId(2), 1);
         verify(basketRepo).addUserItem(any(UserId.class), any(ProductId.class), anyInt());
     }
 
-    @Test void
-    return_a_users_basket_with_correct_items(){
+   @Test void
+    request_user_basket_items(){
         shoppingBasketService.basketFor(userId);
-        verify(basketRepo).getByUserId(any(UserId.class));
-    }
+        verify(basketRepo).getUserItems(userId);
+   }
 }
