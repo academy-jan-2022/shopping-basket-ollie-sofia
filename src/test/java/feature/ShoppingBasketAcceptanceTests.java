@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShoppingBasketAcceptanceTests {
     private ShoppingBasketService shoppingBasketService;
-    private User user;
+    private UserId userId;
 
 //    - Creation date (of the shopping basket)
 //      - 2 x The Hobbit   // 2 x 5.00 = £10.00
@@ -19,14 +19,14 @@ public class ShoppingBasketAcceptanceTests {
     @BeforeEach
     void setUp(){
         this.shoppingBasketService = new ShoppingBasketService(new BasketRepository(new Baskets(new ArrayList<>())));
-        this.user = new User(1);
+        this.userId = new UserId(1);
     }
 
     @Test
     void E2E(){
-        shoppingBasketService.addItem(user, new Product(1), 2);
-        shoppingBasketService.addItem(user, new Product(2), 5);
-        var basket = shoppingBasketService.basketFor(user);
+        shoppingBasketService.addItem(userId, new ProductId(1), 2);
+        shoppingBasketService.addItem(userId, new ProductId(2), 5);
+        var basket = shoppingBasketService.basketFor(userId);
         var result = basket.checkContent();
         var expected = "- Basket Created on 01/01/2020\n"
                 + "- 2 x The Hobbit // 2 x 5.00 = £10.00\n"

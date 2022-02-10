@@ -8,18 +8,20 @@ public class ShoppingBasketService {
         this.basketRepo = basketRepo;
     }
 
-    public void addItem(User user, Product product, int quantity) {
-        var newItem = new Item(product, quantity);
-        var userBasket = basketRepo.getByUserId(user);
-
-        if (userBasket == null) {
-            userBasket = basketRepo.createBasket(user);
-        }
-
-        basketRepo.addItem(userBasket, newItem);
+    public void addItem(UserId userId, ProductId productId, int quantity) {
+        basketRepo.addUserItem(userId, productId, quantity);
+//        var newItem = new Item(product, quantity);
+//        var userBasket = basketRepo.getByUserId(userId);
+//
+//        if (userBasket == null) {
+//            userBasket = basketRepo.createBasket(userId);
+//        }
+//
+//        basketRepo.addItem(userBasket, newItem);
     }
 
-    public Basket basketFor(User user) {
-        return basketRepo.getByUserId(user);
+    public Basket basketFor(UserId userId) {
+
+        return basketRepo.getByUserId(userId);
     }
 }

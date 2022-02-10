@@ -10,16 +10,16 @@ public class Baskets {
         this.baskets = baskets;
     }
 
-    public Basket findBasket(User user) {
+    public Basket findBasket(UserId userId) {
         return baskets
                 .stream()
-                .filter(basket -> user.id() == basket.getUserId())
+                .filter(basket -> userId.id() == basket.getUserId())
                 .findFirst()
                 .orElse(null);
     }
 
-    public Basket create(User user) {
-        Basket newBasket = new Basket(user, "");
+    public Basket create(UserId userId) {
+        Basket newBasket = new Basket(userId, "");
         baskets.add(newBasket);
         return newBasket;
     }

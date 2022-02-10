@@ -3,6 +3,7 @@ package feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -10,26 +11,34 @@ import static org.mockito.Mockito.verify;
 public class BasketRepositoryShould {
 
 
-    private User user;
+    private UserId userId;
     private BasketRepository basketRepo;
     private Baskets baskets;
 
     @BeforeEach
     void setUp() {
-        this.user = new User(1);
+        this.userId = new UserId(1);
         this.baskets = mock(Baskets.class);
         this.basketRepo = new BasketRepository(baskets);
     }
 
     @Test void
     returns_true_if_basket_exists(){
-        basketRepo.getByUserId(user);
-        verify(baskets).findBasket(any(User.class));
+        basketRepo.getByUserId(userId);
+        verify(baskets).findBasket(any(UserId.class));
     }
 
     @Test void
     creates_a_basket() {
-        basketRepo.createBasket(user);
-        verify(baskets).create(any(User.class));
+        basketRepo.createBasket(userId);
+        verify(baskets).create(any(UserId.class));
+    }
+
+    @Test void
+    adds_item(){
+        basketRepo.addUserItem(new UserId(1), new ProductId(1), 3);
+        var result = basketRepo.getUserItems(new UserId(1));
+        assertEquals(1, result.size());
+
     }
 }

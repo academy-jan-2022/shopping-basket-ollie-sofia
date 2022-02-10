@@ -1,4 +1,4 @@
 package feature;
 
-public record Item(Product product, int quantity) {
+public record Item(ProductId productId, int quantity) {
 }
