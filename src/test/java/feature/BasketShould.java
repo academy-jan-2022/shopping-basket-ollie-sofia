@@ -9,9 +9,10 @@ public class BasketShould {
     @Test
     void
     print_header_with_correct_date() {
-        Basket basket = new Basket(new User(1), "01/01/2020");
+        var createdDate = "01/01/2020";
+        Basket basket = new Basket(new User(1), createdDate);
         var result =basket.checkContent();
-        var expected = "- Basket Created on 01/01/2020\n";
+        var expected = "- Basket Created on " + createdDate + "\n";
         assertEquals(result, expected);
     }
 }
