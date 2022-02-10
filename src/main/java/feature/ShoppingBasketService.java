@@ -25,6 +25,7 @@ public class ShoppingBasketService {
         }
 
         var basket = new Basket(basketEntries, 0, new Date());
+
         return basket;
     }
 }
