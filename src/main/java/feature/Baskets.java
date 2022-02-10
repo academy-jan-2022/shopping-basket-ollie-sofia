@@ -19,7 +19,7 @@ public class Baskets {
     }
 
     public Basket create(User user) {
-        Basket newBasket = new Basket(user);
+        Basket newBasket = new Basket(user, "");
         baskets.add(newBasket);
         return newBasket;
     }

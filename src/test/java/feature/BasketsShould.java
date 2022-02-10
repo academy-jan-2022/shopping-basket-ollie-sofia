@@ -26,7 +26,7 @@ public class BasketsShould {
 
     @Test
     void return_true_when_existing_baskets(){
-        var expected = new Basket(user);
+        var expected = new Basket(user, "");
         var listOfBaskets = new ArrayList<Basket>();
         listOfBaskets.add(expected);
         var baskets  = new Baskets(listOfBaskets);
@@ -59,7 +59,7 @@ public class BasketsShould {
 
     @Test
     void does_not_add_item_if_basket_does_not_exist(){
-        baskets.addItem(new Basket(user), new Item(new Product(1), 2));
+        baskets.addItem(new Basket(user, ""), new Item(new Product(1), 2));
         var result = baskets.findBasket(user);
         assertNull(result);
     }

@@ -7,10 +7,12 @@ import java.util.Objects;
 public class Basket {
 
     private final User user;
+    private final String dateCreated;
     public List<Item> items = new ArrayList<>();
 
-    public Basket(User user) {
+    public Basket(User user, String dateCreated) {
         this.user = user;
+        this.dateCreated = dateCreated;
     }
 
     public String checkContent() {
