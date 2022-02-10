@@ -14,7 +14,7 @@ public class Basket {
     }
 
     public String checkContent() {
-        return "";
+        return "- Basket Created on 01/01/2020\n";
     }
 
     public int getUserId(){
