@@ -14,7 +14,7 @@ public class Basket {
     }
 
     public String checkContent() {
-        throw new UnsupportedOperationException();
+        return "";
     }
 
     public int getUserId(){
