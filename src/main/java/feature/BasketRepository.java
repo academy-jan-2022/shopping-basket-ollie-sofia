@@ -1,6 +1,5 @@
 package feature;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -8,7 +7,6 @@ public class BasketRepository implements IBasketRepository {
 
     private final Baskets baskets;
     private final Hashtable<UserId, List<ProductQuantityDAL>> basketItems;
-
 
     public BasketRepository(Baskets baskets) {
         this.baskets = baskets;
@@ -36,7 +34,7 @@ public class BasketRepository implements IBasketRepository {
 
     @Override
     public void addUserItem(UserId userId, ProductId productId, int quantity) {
-        var productQuantity = new ProductQuantityDAL(productId, 4);
+        var productQuantity = new ProductQuantityDAL(productId, quantity);
 
         if (!basketItems.containsKey(userId)){
             var userProductList =  new ArrayList<ProductQuantityDAL>();
