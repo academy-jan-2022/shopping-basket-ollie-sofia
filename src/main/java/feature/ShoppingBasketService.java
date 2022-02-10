@@ -21,6 +21,7 @@ public class ShoppingBasketService {
     }
 
     public Basket basketFor(User user) {
+        basketRepo.getByUserId(user);
         return new Basket(user);
     }
 }

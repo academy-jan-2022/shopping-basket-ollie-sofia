@@ -47,19 +47,8 @@ public class ShoppingBasketServiceShould {
     }
 
     @Test void
-    return_a_users_basket_with_expected_user_id(){
-        var user = new User(1);
-        var result = shoppingBasketService.basketFor(user);
-        assertEquals(user.id(), result.getUserId());
-    }
-
-    @Test void
-    returns_a_users_basket_with_correct_items(){
-        shoppingBasketService.addItem(user, new Product(1), 3);
-        var result = shoppingBasketService.basketFor(user);
-        var resultItem = result.items.get(0);
-        assertEquals(user.id(), result.getUserId());
-        assertEquals(1, resultItem.product().id());
-        assertEquals(3, resultItem.quantity());
+    return_a_users_basket_with_correct_items(){
+        shoppingBasketService.basketFor(user);
+        verify(basketRepo).getByUserId(any(User.class));
     }
 }
