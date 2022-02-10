@@ -60,6 +60,6 @@ public class BasketsShould {
     void does_not_add_item_if_basket_does_not_exist(){
         baskets.addItem(new Basket(user), new Item(new Product(1), 2));
         var result = baskets.findBasket(user);
-        assertEquals(result.items.size(), 0);
+        assertNull(result);
     }
 }

@@ -26,7 +26,10 @@ public class Baskets {
 
     public void addItem(Basket basket, Item item) {
         var basketIndex = baskets.indexOf(basket);
-        var existingBasket = baskets.get(basketIndex);
-        existingBasket.items.add(item);
+
+        if (basketIndex >= 0){
+            var existingBasket = baskets.get(basketIndex);
+            existingBasket.items.add(item);
+        }
     }
 }
