@@ -20,7 +20,7 @@ public class ShoppingBasketService {
 
     }
 
-    public Basket basketFor(int i) {
-        throw new UnsupportedOperationException();
+    public Basket basketFor(User user) {
+        return new Basket(user);
     }
 }

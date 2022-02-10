@@ -26,7 +26,7 @@ public class ShoppingBasketAcceptanceTests {
     void E2E(){
         shoppingBasketService.addItem(user, new Product(1), 2);
         shoppingBasketService.addItem(user, new Product(2), 5);
-        var basket = shoppingBasketService.basketFor(1);
+        var basket = shoppingBasketService.basketFor(user);
         var result = basket.checkContent();
         var expected = "- Basket Created on 01/01/2020\n"
                 + "- 2 x The Hobbit // 2 x 5.00 = £10.00\n"

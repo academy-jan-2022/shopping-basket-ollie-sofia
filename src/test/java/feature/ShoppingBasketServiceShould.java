@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
@@ -22,13 +23,6 @@ public class ShoppingBasketServiceShould {
         shoppingBasketService = new ShoppingBasketService(basketRepo);
     }
 
-//    @Test
-//    void
-//    invoke_add_method_on_basket_repo() {
-//        var shoppingBasketService = new ShoppingBasketService(basketRepo);
-//        shoppingBasketService.addItem(new User(1), new Product(1), 2);
-//        verify(basketRepo).add(new User(1), new Product(1), 2);
-//    }
 
     @Test void
     check_if_basket_exists() {
@@ -48,5 +42,12 @@ public class ShoppingBasketServiceShould {
         when(basketRepo.getByUserId(any(User.class))).thenReturn(new Basket(new User(1)));
         shoppingBasketService.addItem(new User(1), new Product(2), 1);
         verify(basketRepo).addItem(any(Basket.class), any(Item.class));
+    }
+
+    @Test void
+    return_a_users_basket(){
+        var user = new User(1);
+        var result = shoppingBasketService.basketFor(user);
+        assertEquals(user.id(), result.getUserId());
     }
 }
