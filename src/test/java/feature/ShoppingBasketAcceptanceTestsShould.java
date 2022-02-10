@@ -19,7 +19,7 @@ public class ShoppingBasketAcceptanceTestsShould {
 
     @BeforeEach
     void setUp(){
-        this.shoppingBasketService = new ShoppingBasketService(new BasketRepository(new Baskets(new ArrayList<>())));
+        this.shoppingBasketService = new ShoppingBasketService(new BasketRepository(new Baskets(new ArrayList<>())), new SimpleDateProvider());
         this.userId = new UserId(1);
     }
 

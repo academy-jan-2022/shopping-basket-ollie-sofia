@@ -36,15 +36,15 @@ public class BasketRepositoryShould {
 
     @Test void
     adds_item(){
-        basketRepo.addUserItem(new UserId(1), new ProductId(1), 3);
+        basketRepo.addUserItem(new UserId(1), new ProductId(1), 3, "");
         var result = basketRepo.getUserItems(new UserId(1));
         assertEquals(1, result.size());
     }
 
     @Test void
     add_item_when_list_exists() {
-        basketRepo.addUserItem(new UserId(1), new ProductId(1), 3);
-        basketRepo.addUserItem(new UserId(1), new ProductId(2), 1);
+        basketRepo.addUserItem(new UserId(1), new ProductId(1), 3, "");
+        basketRepo.addUserItem(new UserId(1), new ProductId(2), 1, "");
         var result = basketRepo.getUserItems(new UserId(1));
         assertEquals(2, result.size());
     }

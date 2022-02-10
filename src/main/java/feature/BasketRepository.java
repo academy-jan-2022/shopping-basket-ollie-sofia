@@ -6,11 +6,11 @@ import java.util.List;
 public class BasketRepository implements IBasketRepository {
 
     private final Baskets baskets;
-    private final Hashtable<UserId, List<ProductQuantityDAL>> basketItems;
+    private final Hashtable<UserId, List<BasketItemDAL>> userBaskets;
 
     public BasketRepository(Baskets baskets) {
         this.baskets = baskets;
-        this.basketItems = new Hashtable<>();
+        this.userBaskets = new Hashtable<>();
     }
 
     public void add(UserId userId, ProductId productId, int quantity) {
@@ -33,31 +33,31 @@ public class BasketRepository implements IBasketRepository {
     }
 
     @Override
-    public void addUserItem(UserId userId, ProductId productId, int quantity) {
-        var productQuantity = new ProductQuantityDAL(productId, quantity);
+    public void addUserItem(UserId userId, ProductId productId, int quantity, String dateAdded) {
+        var productQuantity = new BasketItemDAL(productId, quantity, dateAdded);
 
-        if (!basketItems.containsKey(userId)){
-            var userProductList =  new ArrayList<ProductQuantityDAL>();
-            basketItems.put(userId, userProductList);
+        if (!userBaskets.containsKey(userId)){
+            var userProductList =  new ArrayList<BasketItemDAL>();
+            userBaskets.put(userId, userProductList);
         }
 
-        basketItems.get(userId).add(productQuantity);
+        userBaskets.get(userId).add(productQuantity);
 
     }
 
     @Override
-    public ArrayList<feature.ProductQuantity> getUserItems(UserId userId) {
+    public ArrayList<BasketItem> getUserItems(UserId userId) {
 
-        var items = basketItems.get(userId);
-        var result = new ArrayList<ProductQuantity>();
+        var items = userBaskets.get(userId);
+        var result = new ArrayList<BasketItem>();
         for(var item : items) {
-            var product = new ProductQuantity(item.productId, item.quantity);
+            var product = new BasketItem(item.productId(), item.quantity(), item.dateAdded());
             result.add(product);
         }
         return result;
     }
 
-    private record ProductQuantityDAL(ProductId productId, Integer quantity){
+    private record BasketItemDAL(ProductId productId, Integer quantity, String dateAdded){
 
     }
 }

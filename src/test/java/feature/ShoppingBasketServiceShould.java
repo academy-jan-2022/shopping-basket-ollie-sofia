@@ -20,18 +20,24 @@ public class ShoppingBasketServiceShould {
     @Mock IBasketRepository basketRepo;
     private ShoppingBasketService shoppingBasketService;
     private UserId userId;
+    private BasketItem[] expectedItems;
+    private DateProvider dateProvider;
 
     @BeforeEach
     void setUp(){
         basketRepo = mock(BasketRepository.class);
-        shoppingBasketService = new ShoppingBasketService(basketRepo);
+        dateProvider = mock(DateProvider.class);
+        shoppingBasketService = new ShoppingBasketService(basketRepo, dateProvider);
         userId = new UserId(1);
+        expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, ""),
+                new BasketItem(new ProductId(2), 1, ""), new BasketItem(new ProductId(3), 1, "")};
+
     }
 
     @Test void
     add_item_when_basket_exists() {
         shoppingBasketService.addItem(userId, new ProductId(2), 1);
-        verify(basketRepo).addUserItem(any(UserId.class), any(ProductId.class), anyInt());
+        verify(basketRepo).addUserItem(any(UserId.class), any(ProductId.class), anyInt(), anyString());
     }
 
    @Test void
@@ -42,9 +48,7 @@ public class ShoppingBasketServiceShould {
 
    @Test void
     check_list_contain_items() {
-       var expectedItems = new ProductQuantity[]{new ProductQuantity(new ProductId(1), 1), new ProductQuantity(new ProductId(2), 1), new ProductQuantity(new ProductId(3), 1)};
-
-        var expected = new ArrayList<ProductQuantity>(Arrays.asList(expectedItems));
+        var expected = new ArrayList<BasketItem>(Arrays.asList(expectedItems));
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
 
         var result = shoppingBasketService.basketFor(userId);

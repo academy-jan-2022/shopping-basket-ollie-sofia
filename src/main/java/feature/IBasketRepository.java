@@ -8,7 +8,7 @@ public interface IBasketRepository {
     Basket1 createBasket(UserId userId);
     void addItem(Basket1 basket1, Item item);
 
-    void addUserItem(UserId userId, ProductId productId, int quantity);
+    void addUserItem(UserId userId, ProductId productId, int quantity, String date);
 
-    ArrayList<ProductQuantity> getUserItems(UserId userId);
+    ArrayList<BasketItem> getUserItems(UserId userId);
 }
