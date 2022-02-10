@@ -1,13 +1,12 @@
 package feature;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 public class BasketRepository implements IBasketRepository {
 
-
-
     private final Baskets baskets;
-    private final Hashtable<Integer, BasketRepository.ProductQuantity> basketItems;
+    private final Hashtable<UserId, List<ProductQuantityDAL>> basketItems;
 
 
     public BasketRepository(Baskets baskets) {
@@ -36,14 +35,23 @@ public class BasketRepository implements IBasketRepository {
 
     @Override
     public void addUserItem(UserId userId, ProductId productId, int quantity) {
+        var productList = new ArrayList<ProductQuantityDAL>();
+        productList.add(new ProductQuantityDAL(productId, quantity));
+        basketItems.put(userId,productList);
     }
 
     @Override
     public ArrayList<feature.ProductQuantity> getUserItems(UserId userId) {
-        return new ArrayList<feature.ProductQuantity>();
+        var items = basketItems.get(userId);
+        var result = new ArrayList<ProductQuantity>();
+        for(var item : items) {
+            var product = new ProductQuantity(item.productId, item.quantity);
+            result.add(product);
+        }
+        return result;
     }
 
-    private record ProductQuantity(Integer productId, Integer quantity){
+    private record ProductQuantityDAL(ProductId productId, Integer quantity){
 
     }
 }
