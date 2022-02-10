@@ -1,5 +1,8 @@
 package feature;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class ShoppingBasketService {
 
     private final IBasketRepository basketRepo;
@@ -13,7 +16,15 @@ public class ShoppingBasketService {
     }
 
     public Basket basketFor(UserId userId) {
-        basketRepo.getUserItems(userId);
-        return null;
+        var productQuantities = basketRepo.getUserItems(userId);
+        var basketEntries =  new ArrayList<BasketEntry>();
+
+        for (var productQuantity : productQuantities){
+            var entry = new BasketEntry(productQuantity.productId(), productQuantity.quantity());
+            basketEntries.add(entry);
+        }
+
+        var basket = new Basket(basketEntries, 0, new Date());
+        return basket;
     }
 }

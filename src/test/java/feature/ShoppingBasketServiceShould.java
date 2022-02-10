@@ -48,6 +48,6 @@ public class ShoppingBasketServiceShould {
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
 
         var result = shoppingBasketService.basketFor(userId);
-        assertEquals(expected, result);
+        assertEquals(expected.size(), result.entries().size());
    }
 }
