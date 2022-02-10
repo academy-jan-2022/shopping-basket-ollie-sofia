@@ -6,6 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -35,5 +38,16 @@ public class ShoppingBasketServiceShould {
     request_user_basket_items(){
         shoppingBasketService.basketFor(userId);
         verify(basketRepo).getUserItems(userId);
+   }
+
+   @Test void
+    check_list_contain_items() {
+       var expectedItems = new ProductQuantity[]{new ProductQuantity(new ProductId(1), 1), new ProductQuantity(new ProductId(2), 1), new ProductQuantity(new ProductId(3), 1)};
+
+        var expected = new ArrayList<ProductQuantity>(Arrays.asList(expectedItems));
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
+
+        var result = shoppingBasketService.basketFor(userId);
+        assertEquals(expected, result);
    }
 }

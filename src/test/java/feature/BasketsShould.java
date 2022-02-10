@@ -14,7 +14,7 @@ public class BasketsShould {
 
     @BeforeEach
     void setUp() {
-        this.baskets = new Baskets(new ArrayList<Basket>());
+        this.baskets = new Baskets(new ArrayList<Basket1>());
         this.userId = new UserId(1);
     }
 
@@ -26,8 +26,8 @@ public class BasketsShould {
 
     @Test
     void return_true_when_existing_baskets(){
-        var expected = new Basket(userId, "");
-        var listOfBaskets = new ArrayList<Basket>();
+        var expected = new Basket1(userId, "");
+        var listOfBaskets = new ArrayList<Basket1>();
         listOfBaskets.add(expected);
         var baskets  = new Baskets(listOfBaskets);
         var result = baskets.findBasket(userId);
@@ -45,7 +45,7 @@ public class BasketsShould {
     void add_basket_returns_basket(){
         var result = baskets.create(userId);
         var userExists = baskets.findBasket(userId);
-        assertInstanceOf(Basket.class, result);
+        assertInstanceOf(Basket1.class, result);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class BasketsShould {
 
     @Test
     void does_not_add_item_if_basket_does_not_exist(){
-        baskets.addItem(new Basket(userId, ""), new Item(new ProductId(1), 2));
+        baskets.addItem(new Basket1(userId, ""), new Item(new ProductId(1), 2));
         var result = baskets.findBasket(userId);
         assertNull(result);
     }

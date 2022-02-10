@@ -18,18 +18,18 @@ public class BasketRepository implements IBasketRepository {
     }
 
     @Override
-    public Basket getByUserId(UserId userId) {
+    public Basket1 getByUserId(UserId userId) {
         return baskets.findBasket(userId);
     }
 
     @Override
-    public Basket createBasket(UserId userId) {
+    public Basket1 createBasket(UserId userId) {
         return baskets.create(userId);
     }
 
     @Override
-    public void addItem(Basket basket, Item item) {
-        baskets.addItem(basket, item);
+    public void addItem(Basket1 basket1, Item item) {
+        baskets.addItem(basket1, item);
     }
 
     @Override

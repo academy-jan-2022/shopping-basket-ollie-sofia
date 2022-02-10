@@ -13,6 +13,7 @@ public class ShoppingBasketService {
     }
 
     public Basket basketFor(UserId userId) {
-        throw new UnsupportedOperationException();
+        basketRepo.getUserItems(userId);
+        return null;
     }
 }

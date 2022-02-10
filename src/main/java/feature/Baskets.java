@@ -4,31 +4,31 @@ import java.util.List;
 
 public class Baskets {
 
-    private final List<Basket> baskets;
+    private final List<Basket1> basket1s;
 
-    public Baskets(List<Basket> baskets) {
-        this.baskets = baskets;
+    public Baskets(List<Basket1> basket1s) {
+        this.basket1s = basket1s;
     }
 
-    public Basket findBasket(UserId userId) {
-        return baskets
+    public Basket1 findBasket(UserId userId) {
+        return basket1s
                 .stream()
                 .filter(basket -> userId.id() == basket.getUserId())
                 .findFirst()
                 .orElse(null);
     }
 
-    public Basket create(UserId userId) {
-        Basket newBasket = new Basket(userId, "");
-        baskets.add(newBasket);
-        return newBasket;
+    public Basket1 create(UserId userId) {
+        Basket1 newBasket1 = new Basket1(userId, "");
+        basket1s.add(newBasket1);
+        return newBasket1;
     }
 
-    public void addItem(Basket basket, Item item) {
-        var basketIndex = baskets.indexOf(basket);
+    public void addItem(Basket1 basket1, Item item) {
+        var basketIndex = basket1s.indexOf(basket1);
 
         if (basketIndex >= 0){
-            var existingBasket = baskets.get(basketIndex);
+            var existingBasket = basket1s.get(basketIndex);
             existingBasket.items.add(item);
         }
     }
