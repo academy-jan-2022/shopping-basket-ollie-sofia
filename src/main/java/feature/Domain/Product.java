@@ -1,4 +1,4 @@
 package feature.Domain;
 
-public record Product(ProductId Id, String Title, Money cost) {
+public record Product(Integer Id, String Title, Money cost) {
 }

@@ -13,6 +13,8 @@ public class ProductRepositoryShould {
     return_expected_product() {
         var productRepo = new ProductRepositoryInMem();
         var result = productRepo.get(new ProductId(1));
-        assertEquals(1, result);
+        assertEquals(1, result.Id());
+        assertEquals("Harry Potter", result.Title());
+        assertEquals(100, result.cost().amount());
     }
 }
