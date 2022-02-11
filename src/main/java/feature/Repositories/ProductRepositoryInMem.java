@@ -11,6 +11,6 @@ public class ProductRepositoryInMem implements ProductRepository {
 
     @Override
     public Product get(ProductId productId) {
-        return new Product(productId.id(), "Harry Potter", new Money(100));
+        return new Product(10002, "The Hobbit", new Money(5));
     }
 }
