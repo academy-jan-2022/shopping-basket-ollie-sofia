@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -85,8 +86,8 @@ public class ShoppingBasketServiceShould {
     @Test void
     get_product_from_product_repository(){
         var productId = new ProductId(1);
-        shoppingBasketService.basketFor(userId);
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
+        shoppingBasketService.basketFor(userId);
         verify(productRepository, atLeast(1)).get(productId);
     }
 }
