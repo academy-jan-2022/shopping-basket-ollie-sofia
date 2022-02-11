@@ -1,7 +1,11 @@
 package feature;
 
+import feature.Domain.ProductId;
+import feature.Domain.UserId;
+import feature.Infrastructure.Providers.SimpleDateProvider;
+import feature.Repositories.BasketRepositoryInMem;
+import feature.Services.ShoppingBasketService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,7 +23,7 @@ public class ShoppingBasketAcceptanceTestsShould {
 
     @BeforeEach
     void setUp(){
-        this.shoppingBasketService = new ShoppingBasketService(new BasketRepository(new Baskets(new ArrayList<>())), new SimpleDateProvider());
+        this.shoppingBasketService = new ShoppingBasketService(new BasketRepositoryInMem(new Baskets(new ArrayList<>())), new SimpleDateProvider());
         this.userId = new UserId(1);
     }
 

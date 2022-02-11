@@ -1,5 +1,7 @@
 package feature;
 
+import feature.Domain.ProductId;
+import feature.Domain.UserId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,14 +1,20 @@
-package feature;
+package feature.Repositories;
+import feature.*;
+import feature.Domain.BasketItem;
+import feature.Domain.ProductId;
+import feature.Domain.UserId;
+import feature.Repositories.Interfaces.BasketRepository;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-public class BasketRepository implements IBasketRepository {
+public class BasketRepositoryInMem implements BasketRepository {
 
     private final Baskets baskets;
     private final Hashtable<UserId, List<BasketItemDAL>> userBaskets;
 
-    public BasketRepository(Baskets baskets) {
+    public BasketRepositoryInMem(Baskets baskets) {
         this.baskets = baskets;
         this.userBaskets = new Hashtable<>();
     }

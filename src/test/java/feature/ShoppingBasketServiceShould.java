@@ -1,5 +1,14 @@
 package feature;
 
+import feature.Domain.BasketItem;
+import feature.Domain.ProductId;
+import feature.Domain.UserId;
+import feature.Infrastructure.Providers.DateProvider;
+import feature.Repositories.BasketRepositoryInMem;
+import feature.Repositories.Interfaces.BasketRepository;
+import feature.Repositories.Interfaces.ProductRepository;
+import feature.Repositories.ProductRepositoryInMem;
+import feature.Services.ShoppingBasketService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,20 +26,23 @@ import static org.mockito.Mockito.*;
 
 public class ShoppingBasketServiceShould {
 
-    @Mock IBasketRepository basketRepo;
+    @Mock
+    BasketRepository basketRepo;
     private ShoppingBasketService shoppingBasketService;
     private UserId userId;
     private BasketItem[] expectedItems;
     private DateProvider dateProvider;
+    private ProductRepository productRepository;
 
     @BeforeEach
     void setUp(){
-        basketRepo = mock(BasketRepository.class);
+        basketRepo = mock(BasketRepositoryInMem.class);
         dateProvider = mock(DateProvider.class);
         shoppingBasketService = new ShoppingBasketService(basketRepo, dateProvider);
         userId = new UserId(1);
         expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, "01/01/2021"),
                 new BasketItem(new ProductId(2), 1, ""), new BasketItem(new ProductId(3), 1, "")};
+        productRepository = new ProductRepositoryInMem();
 
     }
 
@@ -69,5 +81,13 @@ public class ShoppingBasketServiceShould {
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expectedItems[0].dateAdded(), result.createdAt());
+    }
+
+    @Test void
+    return_a_basket_with_correct_total_amount(){
+        var productId = new ProductId(1);
+        shoppingBasketService.basketFor(userId);
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
+        verify(productRepository).get(productId);
     }
 }

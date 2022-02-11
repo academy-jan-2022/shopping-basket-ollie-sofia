@@ -1,14 +1,20 @@
-package feature;
+package feature.Services;
+
+import feature.Domain.Basket;
+import feature.Domain.BasketEntry;
+import feature.Domain.ProductId;
+import feature.Domain.UserId;
+import feature.Infrastructure.Providers.DateProvider;
+import feature.Repositories.Interfaces.BasketRepository;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ShoppingBasketService {
 
-    private final IBasketRepository basketRepo;
+    private final BasketRepository basketRepo;
     private DateProvider dateProvider;
 
-    public ShoppingBasketService(IBasketRepository basketRepo, DateProvider dateProvider) {
+    public ShoppingBasketService(BasketRepository basketRepo, DateProvider dateProvider) {
         this.basketRepo = basketRepo;
         this.dateProvider = dateProvider;
     }

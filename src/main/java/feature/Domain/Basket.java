@@ -1,6 +1,7 @@
-package feature;
+package feature.Domain;
 
-import java.util.Date;
+import feature.Domain.BasketEntry;
+
 import java.util.List;
 
 public record Basket(List<BasketEntry> entries, int total, String createdAt) {

@@ -1,5 +1,8 @@
 package feature;
 
+import feature.Domain.ProductId;
+import feature.Domain.UserId;
+import feature.Repositories.BasketRepositoryInMem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,18 +11,18 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class BasketRepositoryShould {
+public class BasketRepositoryInMemShould {
 
 
     private UserId userId;
-    private BasketRepository basketRepo;
+    private BasketRepositoryInMem basketRepo;
     private Baskets baskets;
 
     @BeforeEach
     void setUp() {
         this.userId = new UserId(1);
         this.baskets = mock(Baskets.class);
-        this.basketRepo = new BasketRepository(baskets);
+        this.basketRepo = new BasketRepositoryInMem(baskets);
     }
 
     @Test void
