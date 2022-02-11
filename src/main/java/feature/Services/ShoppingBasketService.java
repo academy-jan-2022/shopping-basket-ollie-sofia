@@ -1,9 +1,6 @@
 package feature.Services;
 
-import feature.Domain.Basket;
-import feature.Domain.BasketEntry;
-import feature.Domain.ProductId;
-import feature.Domain.UserId;
+import feature.Domain.*;
 import feature.Infrastructure.Providers.DateProvider;
 import feature.Repositories.Interfaces.BasketRepository;
 import feature.Repositories.Interfaces.ProductRepository;
@@ -37,7 +34,7 @@ public class ShoppingBasketService {
         var basketEntries =  new ArrayList<BasketEntry>();
 
         for (var item : items){
-            var product = productRepository.get(item.productId());
+            productRepository.get(new ProductId(1));
             var entry = new BasketEntry(item.productId(), item.quantity());
             basketEntries.add(entry);
         }

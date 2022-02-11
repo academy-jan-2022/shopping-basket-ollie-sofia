@@ -36,9 +36,9 @@ public class ShoppingBasketServiceShould {
 
     @BeforeEach
     void setUp(){
-        basketRepo = mock(BasketRepositoryInMem.class);
+        basketRepo = mock(BasketRepository.class);
         dateProvider = mock(DateProvider.class);
-        productRepository = mock(ProductRepositoryInMem.class);
+        productRepository = mock(ProductRepository.class);
         shoppingBasketService = new ShoppingBasketService(basketRepo, productRepository, dateProvider);
         userId = new UserId(1);
         expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, "01/01/2021"),
@@ -87,6 +87,6 @@ public class ShoppingBasketServiceShould {
         var productId = new ProductId(1);
         shoppingBasketService.basketFor(userId);
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
-        verify(productRepository).get(productId);
+        verify(productRepository, atLeast(1)).get(productId);
     }
 }
