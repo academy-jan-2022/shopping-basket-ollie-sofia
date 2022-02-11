@@ -1,4 +1,4 @@
 package feature.Domain;
 
-public record Money(Integer amount) {
+public record Money(int amount) {
 }

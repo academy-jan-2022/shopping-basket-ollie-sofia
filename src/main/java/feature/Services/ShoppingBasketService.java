@@ -27,6 +27,7 @@ public class ShoppingBasketService {
 
     public Basket basketFor(UserId userId) {
         var items = basketRepo.getUserItems(userId);
+        int total = 0;
 
         if(items == null || items.size() == 0)
             return null;
@@ -34,12 +35,14 @@ public class ShoppingBasketService {
         var basketEntries =  new ArrayList<BasketEntry>();
 
         for (var item : items){
-            productRepository.get(new ProductId(1));
+            var product = productRepository.get(new ProductId(1));
+            total += product.cost().amount();
+
             var entry = new BasketEntry(item.productId(), item.quantity());
             basketEntries.add(entry);
         }
 
-        var basket = new Basket(basketEntries, new Money(5), items.get(0).dateAdded());
+        var basket = new Basket(basketEntries, new Money(total), items.get(0).dateAdded());
 
         return basket;
     }

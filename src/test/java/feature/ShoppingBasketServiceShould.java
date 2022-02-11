@@ -32,12 +32,14 @@ public class ShoppingBasketServiceShould {
     private BasketItem[] expectedItems;
     private DateProvider dateProvider;
     private ProductRepository productRepository;
+    private Product product;
 
     @BeforeEach
     void setUp(){
         basketRepo = mock(BasketRepository.class);
         dateProvider = mock(DateProvider.class);
         productRepository = mock(ProductRepository.class);
+        product = new Product(1, "a", new Money(10));
         shoppingBasketService = new ShoppingBasketService(basketRepo, productRepository, dateProvider);
         userId = new UserId(1);
         expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, "01/01/2021"),
@@ -60,6 +62,7 @@ public class ShoppingBasketServiceShould {
     check_list_contain_items() {
         var expected = new ArrayList<BasketItem>(Arrays.asList(expectedItems));
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
+        when(productRepository.get(any(ProductId.class))).thenReturn(product);
 
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expected.size(), result.entries().size());
@@ -69,6 +72,7 @@ public class ShoppingBasketServiceShould {
     return_basket_with_correct_date_when_contains_1_item() {
         var expected = new ArrayList<BasketItem>(Arrays.asList(expectedItems[0]));
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
+        when(productRepository.get(any(ProductId.class))).thenReturn(product);
 
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expected.get(0).dateAdded(), result.createdAt());
@@ -77,14 +81,15 @@ public class ShoppingBasketServiceShould {
     @Test void
     return_basket_with_correct_date_when_contains_multiple_items(){
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
+        when(productRepository.get(any(ProductId.class))).thenReturn(product);
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expectedItems[0].dateAdded(), result.createdAt());
     }
 
     @Test void
     get_product_from_product_repository(){
-        var productId = new ProductId(1);
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
+        when(productRepository.get(any(ProductId.class))).thenReturn(product);
         shoppingBasketService.basketFor(userId);
         verify(productRepository, atLeast(1)).get(any(ProductId.class));
     }
