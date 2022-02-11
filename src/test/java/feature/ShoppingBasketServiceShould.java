@@ -99,4 +99,24 @@ public class ShoppingBasketServiceShould {
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expectedProduct.cost(), result.total());
     }
+
+    @Test void
+    returns_total_value_when_multiple_products_in_basket() {
+        var expectedBasketItems = new ArrayList<BasketItem>(Arrays.asList(expectedItems));
+        var expectedProducts = new ArrayList<Product>(Arrays.asList(
+                new Product(1, "", new Money(10)),
+                new Product(2, "", new Money(20)),
+                new Product(3, "", new Money(15)))
+        );
+
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expectedBasketItems);
+        when(productRepository.get(any(ProductId.class)))
+                .thenReturn(expectedProducts.get(0))
+                .thenReturn(expectedProducts.get(1))
+                .thenReturn(expectedProducts.get(2));
+
+        var expected = 45;
+        var result = shoppingBasketService.basketFor(userId);
+        assertEquals(expected, result.total().amount());
+    }
 }
