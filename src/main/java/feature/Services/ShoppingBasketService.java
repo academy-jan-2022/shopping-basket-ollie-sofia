@@ -38,7 +38,7 @@ public class ShoppingBasketService {
             var product = productRepository.get(new ProductId(1));
             total += product.cost().amount();
 
-            var entry = new BasketEntry(item.productId(), item.quantity());
+            var entry = new BasketEntry(item.productId(), item.quantity(), new Money(1));
             basketEntries.add(entry);
         }
 

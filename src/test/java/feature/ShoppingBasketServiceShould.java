@@ -124,4 +124,19 @@ public class ShoppingBasketServiceShould {
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expected, result.total().amount());
     }
+
+    @Test void
+    return_basket_entry_total() {
+        var expectedBasketItems = new ArrayList<BasketItem>(Arrays.asList(new BasketItem(new ProductId(1), 1, "")));
+        var expectedProducts = new ArrayList<Product>(Arrays.asList(
+                new Product(1, "", new Money(10)))
+        );
+
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expectedBasketItems);
+        when(productRepository.get(any(ProductId.class)))
+                .thenReturn(expectedProducts.get(0));
+
+        var result = shoppingBasketService.basketFor(new UserId(1));
+        assertEquals(10,result.entries().get(0).total().amount());
+    }
 }
