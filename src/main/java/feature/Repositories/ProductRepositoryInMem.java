@@ -19,8 +19,11 @@ public class ProductRepositoryInMem implements ProductRepository {
 
     @Override
     public Product get(ProductId productId) {
-       var product = productsDAL.stream().filter(productDAL -> productDAL.productId == productId.id()).findFirst().map(productDAL -> new Product(productDAL.productId, productDAL.title, productDAL.amount)).orElse(null);
-       return product;
+       return productsDAL.stream()
+               .filter(productDAL -> productDAL.productId == productId.id()).findFirst()
+               .map(productDAL ->
+                       new Product(productDAL.productId, productDAL.title, productDAL.amount))
+               .orElse(null);
     }
 
     private record ProductDAL(Integer productId, String title, Money amount) {}
