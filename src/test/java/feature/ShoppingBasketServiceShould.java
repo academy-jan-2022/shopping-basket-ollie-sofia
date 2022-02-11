@@ -88,6 +88,6 @@ public class ShoppingBasketServiceShould {
         var productId = new ProductId(1);
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
         shoppingBasketService.basketFor(userId);
-        verify(productRepository, atLeast(1)).get(productId);
+        verify(productRepository, atLeast(1)).get(any(ProductId.class));
     }
 }
