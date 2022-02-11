@@ -63,4 +63,11 @@ public class ShoppingBasketServiceShould {
         var result = shoppingBasketService.basketFor(userId);
         assertEquals(expected.get(0).dateAdded(), result.createdAt());
     }
+
+    @Test void
+    return_basket_with_correct_date_when_contains_multiple_items(){
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
+        var result = shoppingBasketService.basketFor(userId);
+        assertEquals(expectedItems[0].dateAdded(), result.createdAt());
+    }
 }
