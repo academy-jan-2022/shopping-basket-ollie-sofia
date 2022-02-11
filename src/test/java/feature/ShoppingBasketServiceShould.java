@@ -1,8 +1,6 @@
 package feature;
 
-import feature.Domain.BasketItem;
-import feature.Domain.ProductId;
-import feature.Domain.UserId;
+import feature.Domain.*;
 import feature.Infrastructure.Providers.DateProvider;
 import feature.Repositories.BasketRepositoryInMem;
 import feature.Repositories.Interfaces.BasketRepository;
@@ -89,5 +87,16 @@ public class ShoppingBasketServiceShould {
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
         shoppingBasketService.basketFor(userId);
         verify(productRepository, atLeast(1)).get(any(ProductId.class));
+    }
+
+    @Test void
+    returns_total_value_when_one_product_in_basket() {
+        var expected = new ArrayList<BasketItem>(Arrays.asList(expectedItems[0]));
+        var expectedProduct = new Product(10002, "The Hobbit", new Money(5));
+        when(basketRepo.getUserItems(any(UserId.class))).thenReturn(expected);
+        when(productRepository.get(any(ProductId.class))).thenReturn(expectedProduct);
+
+        var result = shoppingBasketService.basketFor(userId);
+        assertEquals(expectedProduct.cost(), result.total());
     }
 }
