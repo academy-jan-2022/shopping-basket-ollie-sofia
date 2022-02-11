@@ -97,6 +97,6 @@ public class ShoppingBasketServiceShould {
         when(productRepository.get(any(ProductId.class))).thenReturn(expectedProduct);
 
         var result = shoppingBasketService.basketFor(userId);
-        assertEquals(expectedProduct.cost(), result.total());
+        assertEquals(expectedProduct.cost().amount(), result.total());
     }
 }

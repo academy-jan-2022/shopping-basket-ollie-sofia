@@ -39,7 +39,7 @@ public class ShoppingBasketService {
             basketEntries.add(entry);
         }
 
-        var basket = new Basket(basketEntries, 0, items.get(0).dateAdded());
+        var basket = new Basket(basketEntries, 5, items.get(0).dateAdded());
 
         return basket;
     }
