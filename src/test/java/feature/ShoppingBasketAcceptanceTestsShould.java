@@ -4,6 +4,7 @@ import feature.Domain.ProductId;
 import feature.Domain.UserId;
 import feature.Infrastructure.Providers.SimpleDateProvider;
 import feature.Repositories.BasketRepositoryInMem;
+import feature.Repositories.ProductRepositoryInMem;
 import feature.Services.ShoppingBasketService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class ShoppingBasketAcceptanceTestsShould {
 
     @BeforeEach
     void setUp(){
-        this.shoppingBasketService = new ShoppingBasketService(new BasketRepositoryInMem(new Baskets(new ArrayList<>())), new SimpleDateProvider());
+        this.shoppingBasketService = new ShoppingBasketService(new BasketRepositoryInMem(new Baskets(new ArrayList<>())),  new ProductRepositoryInMem(), new SimpleDateProvider());
         this.userId = new UserId(1);
     }
 

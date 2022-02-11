@@ -38,12 +38,11 @@ public class ShoppingBasketServiceShould {
     void setUp(){
         basketRepo = mock(BasketRepositoryInMem.class);
         dateProvider = mock(DateProvider.class);
-        shoppingBasketService = new ShoppingBasketService(basketRepo, dateProvider);
+        productRepository = mock(ProductRepositoryInMem.class);
+        shoppingBasketService = new ShoppingBasketService(basketRepo, productRepository, dateProvider);
         userId = new UserId(1);
         expectedItems = new BasketItem[]{new BasketItem(new ProductId(1), 1, "01/01/2021"),
                 new BasketItem(new ProductId(2), 1, ""), new BasketItem(new ProductId(3), 1, "")};
-        productRepository = new ProductRepositoryInMem();
-
     }
 
     @Test void
@@ -84,7 +83,7 @@ public class ShoppingBasketServiceShould {
     }
 
     @Test void
-    return_a_basket_with_correct_total_amount(){
+    get_product_from_product_repository(){
         var productId = new ProductId(1);
         shoppingBasketService.basketFor(userId);
         when(basketRepo.getUserItems(any(UserId.class))).thenReturn(new ArrayList<BasketItem>(Arrays.asList(expectedItems)));
